@@ -9,16 +9,16 @@ const Row = styled.div`
       justify-content: space-between;
       align-items: center;
     `}
-  ${(props) =>
-    props.type === "vertical" &&
+  ${({ type = "vertical" }) =>
+    type === "vertical" &&
     css`
       flex-direction: column;
       gap: 1.6rem;
     `}
 `;
 
-Row.defaultProps = {
-  type: "vertical",
-};
+// Row.defaultProps = {
+//   type: "vertical",
+// };
 
 export default Row;
