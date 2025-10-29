@@ -7,7 +7,19 @@ const StyledAppLayout = styled.div`
   display: grid;
   grid-template-columns: 26rem 1fr;
   grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "sidebar header"
+    "sidebar main";
   height: 100vh;
+`;
+
+const HeaderArea = styled(Header)`
+  grid-area: header;
+  z-index: 10; /* ensures header stays above main */
+`;
+
+const SideBarArea = styled(SideBar)`
+  grid-area: sidebar;
 `;
 
 const Main = styled.main`
