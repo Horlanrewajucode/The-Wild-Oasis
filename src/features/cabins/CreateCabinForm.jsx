@@ -45,10 +45,10 @@ const Error = styled.span`
   color: var(--color-red-700);
 `;
 
-function CreateCabinForm({ cabinToEdit = {} }) {
-    const { isCreating, createCabin } = useCreateCabin();
-    const { isEditing, editCabin } = useEditCabin();
-    const isWorking = isCreating || isEditing;
+function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
+  const { isCreating, createCabin } = useCreateCabin();
+  const { isEditing, editCabin } = useEditCabin();
+  const isWorking = isCreating || isEditing;
 
   const { id: editId, ...editValues } = cabinToEdit;
   const isEditSession = Boolean(editId);
@@ -60,7 +60,6 @@ function CreateCabinForm({ cabinToEdit = {} }) {
   const { errors } = formState;
   // console.log(errors);
 
-
   function onSubmit(data) {
     const image = typeof data.image === "string" ? data.image : data.image[0];
 
@@ -70,6 +69,7 @@ function CreateCabinForm({ cabinToEdit = {} }) {
         {
           onSuccess: (data) => {
             reset();
+            onCloseModal?.();
           },
         }
       );
@@ -79,6 +79,7 @@ function CreateCabinForm({ cabinToEdit = {} }) {
         {
           onSuccess: (data) => {
             reset();
+            onCloseModal?.();
           },
         }
       );
@@ -89,7 +90,7 @@ function CreateCabinForm({ cabinToEdit = {} }) {
   }
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit, onError)}>
+    <Form onSubmit={handleSubmit(onSubmit, onError)} type={onCloseModal ? 'modal' : 'regular'}>
       <FormRow>
         <Label htmlFor="name">Cabin name</Label>
         <Input
@@ -191,7 +192,11 @@ function CreateCabinForm({ cabinToEdit = {} }) {
 
       <FormRow>
         {/* type is an HTML attribute! */}
-        <Button variation="secondary" type="reset">
+        <Button
+          variation="secondary"
+          type="reset"
+          onClick={() => onCloseModal?.()}
+        >
           Cancel
         </Button>
         <Button disabled={isWorking}>
