@@ -12,9 +12,9 @@ export function useOutsideClick(handler, listenCapturing = true) {
         }
       }
 
-      document.addEventListener("click", handleClick, listenCapturing);
+      document.addEventListener("mousedown", handleClick, listenCapturing);
       return () =>
-        document.removeEventListener("click", handleClick, listenCapturing);
+        document.removeEventListener("mousedown", handleClick, listenCapturing);
     },
     [handler, listenCapturing]
   );
