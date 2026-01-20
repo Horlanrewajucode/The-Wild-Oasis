@@ -29,9 +29,9 @@ function CheckinBooking() {
   const [confirmedPaid, setConfirmedPaid] = useState(false);
   const [addBreakfast, setAddBreakfast] = useState(false);
   const { booking, isPending } = useBookingPage();
-  const moveBack = useMoveBack();
   const { checkin, isCheckingIn } = useCheckin();
   const { settings, isPending: isLoadingSettings } = useSettings();
+  const moveBack = useMoveBack();
 
   useEffect(() => setConfirmedPaid(booking?.isPaid ?? false), [booking]);
 
@@ -114,6 +114,7 @@ function CheckinBooking() {
         >
           Check in booking #{bookingId}
         </Button>
+
         <Button variation="secondary" onClick={moveBack}>
           Back
         </Button>
