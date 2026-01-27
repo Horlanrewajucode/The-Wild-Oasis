@@ -64,7 +64,7 @@ Built with React on the frontend and Supabase as the backend (authentication, da
 
 - Database (PostgreSQL)
 
-Styling: Styled Component
+#### Styling: Styled Component
 
 ### 🔐 Authentication Flow
 
